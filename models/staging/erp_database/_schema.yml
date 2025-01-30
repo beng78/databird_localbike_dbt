@@ -1,0 +1,29 @@
+version: 2
+models:
+  - name: stg_erp_database__brand
+    description: "Product brand table"
+    columns:
+      - name: brand_id
+        data_type: int64
+        description: "Unique identifier for brand"
+        tests:
+          - unique
+          - not_null
+
+      - name: brand_name
+        data_type: string
+        description: "Name of brand"
+  
+  - name: stg_erp_database__category
+    description: "Product category table"
+    columns:
+      - name: category_id
+        data_type: int64
+        description: "Unique identifier for category"
+        tests:
+          - unique
+          - not_null
+
+      - name: category_name
+        data_type: string
+        description: "Name of category"

@@ -1,0 +1,33 @@
+version: 2
+
+sources:
+  - name: erp_database
+    schema: erp_database
+    tables:
+      - name: brands
+        description: "Product brand table"
+        
+      - name: categories
+        description: "Product category table"
+
+      - name: customers
+        description: "Customer table"
+
+      - name: order_items
+        description: "Order items table"
+
+      - name: orders
+        description: "Order table"
+
+      - name: products
+        description: "Product table"
+
+      - name: staffs
+        description: "Vendor staff table"
+
+      - name: stocks      
+        description: "Stock product table at store level"
+
+      - name: stores    
+        description: "Store table"
+      
