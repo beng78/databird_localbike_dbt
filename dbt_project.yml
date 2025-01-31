@@ -40,3 +40,6 @@ models:
       +materialized: view
       +schema: staging
 
+    mart:
+      +materialized: table
+      +schema: mart
