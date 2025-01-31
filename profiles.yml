@@ -1,11 +1,11 @@
 databird_localbike_dbt:
   outputs:
     dev:
-      dataset: dbt
+      dataset: dev
       job_execution_timeout_seconds: 300
       job_retries: 1
       keyfile: D:\dbeaver\databird-localbike-73f9878aa660.json
-      location: EU
+      location: europe-west9
       method: service-account
       priority: interactive
       project: databird-localbike
