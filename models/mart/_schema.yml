@@ -240,3 +240,51 @@ models:
       - name: zip_code
         data_type: int64
         description: "Zip code of store"
+
+  - name: mrt_stock
+    description: "Stock fact table at product, store level"
+    columns:
+      - name: stock_id
+        data_type: string
+        description: "Unique identifier for stock"
+        tests:
+          - unique
+          - not_null
+
+      - name: product_id
+        data_type: int64
+        description: "Product identifier"
+        tests:
+          - not_null        
+        references:
+          model: mrt_product
+          column: product_id
+
+      - name: store_id
+        data_type: int64
+        description: "Store identifier"
+        tests:
+          - not_null
+        references:
+          model: mrt_store
+          column: store_id
+
+      - name: stock_quantity
+        data_type: int64
+        description: "Stock quantity at time of load"
+
+      - name: stock_value
+        data_type: numeric
+        description: "Value of stock at time of load, calculated as stock_quantity * product.list_price"
+
+      - name: sale_quantity_last_2_months
+        data_type: int64
+        description: "Sale quantity in last 2 months"
+
+      - name: stock_coverage_in_days
+        data_type: float64
+        description: "Stock coverage in days, calculated as stock_quantity / (sale_quantity_last_2_months / 60) "
+
+      - name: total_sale_quantity
+        data_type: int64
+        description: "Total sale quantity since beginning"

@@ -1,7 +1,7 @@
 {{ config(alias='sale_order')  }}
 SELECT
-	itm.order_item_id,
-	itm.order_id,
+	ord.order_item_id,
+	ord.order_id,
 	ord.order_status,
 	ord.customer_id,
 	ord.order_date,
@@ -9,11 +9,11 @@ SELECT
 	ord.shipped_date,
 	ord.store_id,
 	ord.staff_id,	
-	itm.product_id,
-	itm.quantity,
-	itm.list_price,
-	itm.discount,
-	itm.net_amount
+	ord.product_id,
+	ord.quantity,
+	ord.list_price,
+	ord.discount,
+	ord.net_amount
 FROM
-    {{ ref('stg_erp_database__sale_order_item') }} itm
-INNER JOIN {{ ref('stg_erp_database__sale_order') }} ord on ord.order_id  = itm.order_id
+    {{ ref('int_erp_database__sale_order') }} ord
+

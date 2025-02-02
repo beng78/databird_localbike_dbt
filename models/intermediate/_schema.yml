@@ -1,0 +1,160 @@
+version: 2
+
+models:
+  
+  - name: int_erp_database__calendar
+    description: "Calendar table"
+    columns:
+      - name: date
+        data_type: date
+        description: "Date"
+        tests:
+          - unique
+          - not_null
+
+      - name: year
+        data_type: int64
+        description: "Year"
+
+      - name: week
+        data_type: int64
+        description: "Week number"
+
+      - name: day
+        data_type: int64
+        description: "Day of month"
+
+      - name: quarter
+        data_type: string
+        description: "Quarter of year"
+
+      - name: month
+        data_type: int64
+        description: "Month number"
+
+      - name: month_name
+        data_type: string
+        description: "Month name"
+
+      - name: day_of_week
+        data_type: int64
+        description: "Day of week"
+
+      - name: day_of_week_name
+        data_type: string
+        description: "Day of week name"
+
+      - name: is_weekday
+        data_type: boolean
+        description: "Wekday flag"
+
+      - name: days_in_month
+        data_type: int64
+        description: "Number of days in month"
+
+  - name: int_erp_database__sale_order  
+    description: "Sale order table at product, customer, store, staff and date level"
+    columns:
+      - name: order_item_id
+        data_type: string
+        description: "Unique identifier for order item"
+        tests:
+          - unique
+          - not_null
+
+      - name: order_id
+        data_type: int64
+        description: "Order identifier"
+
+      - name: order_status
+        data_type: int64
+        description: "Order status"
+
+      - name: customer_id
+        data_type: int64
+        description: "Customer identifier"
+        references:
+          model: mrt_customer
+          column: customer_id
+
+      - name: order_date
+        data_type: date
+        description: "Order date"
+
+      - name: required_date
+        data_type: date
+        description: "Required date"
+
+      - name: shipped_date
+        data_type: date
+        description: "Shipped date"
+
+      - name: store_id
+        data_type: int64
+        description: "Store identifier"
+        references:
+          model: mrt_store
+          column: store_id
+
+      - name: staff_id
+        data_type: int64
+        description: "Staff identifier"
+        references:
+          model: mrt_staff
+          column: staff_id
+
+      - name: product_id
+        data_type: int64
+        description: "Product identifier"
+        references:
+          model: mrt_product
+          column: product_id
+
+      - name: quantity
+        data_type: int64
+        description: "Quantity ordered"
+
+      - name: list_price
+        data_type: numeric
+        description: "List price of product"
+
+      - name: discount
+        data_type: numeric
+        description: "discount percentage"
+
+      - name: net_amount
+        data_type: numeric
+        description: "Net amount. Calculated as (list_price * quantity) - discount"
+        tests:
+          - is_positive
+
+  - name: int_erp_database__stock
+    description: "Stock table at store and product level"
+    columns:
+      - name: stock_id
+        data_type: string
+        description: "Unique identifier for stock item"
+        tests:
+          - unique
+          - not_null
+
+      - name: store_id
+        data_type: int64
+        description: "Store identifier"
+        tests:
+          - not_null
+
+      - name: product_id
+        data_type: int64
+        description: "Product identifier"
+        tests:
+          - not_null
+
+      - name: quantity
+        data_type: int64
+        description: "Quantity in stock at time of load"
+
+      - name: stock_value
+        data_type: numeric
+        description: "Stock value at time of load"
+ 
