@@ -254,7 +254,7 @@ models:
         tests:
           - is_positive
   
-  - name: stg_erp_database__store_stock
+  - name: stg_erp_database__stock
     description: "Stock table at store level"
     columns:
       - name: stock_id
