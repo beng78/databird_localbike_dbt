@@ -75,9 +75,10 @@ models:
       - name: brand_id
         data_type: int64
         description: "Brand identifier"
-        references: 
-          resource: stg_erp_database__brand
-          on: brand_id
+        tests:
+          - relationships:
+              to: ref('stg_erp_database__brand')
+              field: brand_id
 
       - name: category_id
         data_type: int64
@@ -266,16 +267,18 @@ models:
       - name: store_id
         data_type: int64
         description: "Identifier for store"
-        references: 
-          resource: stg_erp_database__store
-          on: store_id
+        tests:
+          - relationships:
+              to: ref('stg_erp_database__store')
+              field: store_id
 
       - name: product_id
         data_type: int64
         description: "Product identifier"
-        references: 
-          resource: stg_erp_database__product
-          on: product_id
+        tests:
+          - relationships:
+              to: ref('stg_erp_database__product')
+              field: product_id
 
       - name: quantity
         data_type: int64
