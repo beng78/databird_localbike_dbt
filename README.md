@@ -41,20 +41,25 @@ Il s'agit d'une modélisation en vue d'un usage Self Service via Metabase
 
 ![Diagramme](images/mart_data_model.png)
 
+### Modèles dbt
+
+[Voir les modèles dbt](target/index.html)
+
+
 ### Dashboard Metabase
 
 4 onglets ont été réalisés pour analyser quelques données du jeu de données
 
-    - Onglet Overview
+    - <u>Onglet Overview</u>
 ![Diagramme](images/Metabase_Overview.png)
 
-    - Onglet Product performances
+    - <u>Onglet Product performances</u>
 ![Diagramme](images/Metabase_Product_performances.png)
 
-    - Onglet Store view 
+    - <u>Onglet Store view</u> 
 ![Diagramme](images/Metabase_Store_view.png)
 
-    - Onglet Stock view
+    - <u>Onglet Stock view</u>
 ![Diagramme](images/Metabase_Stock_view.png)
 
 
