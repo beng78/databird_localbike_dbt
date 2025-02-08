@@ -1,8 +1,136 @@
 version: 2
 
 models:
+  - name: mrt_sale_order
+    description: '{{ doc("mrt_sale_order") }}'
+    columns:
+      - name: order_item_id
+        data_type: string
+        description: "Unique identifier for order item"
+        tests:
+          - unique
+          - not_null
+
+      - name: order_id
+        data_type: int64
+        description: "Order identifier"
+
+      - name: order_status
+        data_type: int64
+        description: "Order status"
+
+      - name: customer_id
+        data_type: int64
+        description: "Customer identifier"
+        tests:
+          - relationships:
+              to: ref('mrt_customer')
+              field: customer_id
+
+      - name: order_date
+        data_type: date
+        description: "Order date"
+
+      - name: required_date
+        data_type: date
+        description: "Required date"
+
+      - name: shipped_date
+        data_type: date
+        description: "Shipped date"
+
+      - name: store_id
+        data_type: int64
+        description: "Store identifier"
+        tests:
+          - relationships:              
+              to: ref('mrt_store')
+              field: store_id
+              
+      - name: staff_id
+        data_type: int64
+        description: "Staff identifier"
+        tests:
+          - relationships:
+              to: ref('mrt_staff')
+              field: staff_id
+
+      - name: product_id
+        data_type: int64
+        description: "Product identifier"
+        tests:
+          - relationships:
+              to: ref('mrt_product')
+              field: product_id
+
+      - name: quantity
+        data_type: int64
+        description: "Quantity ordered"
+
+      - name: list_price
+        data_type: numeric
+        description: "List price of product"
+
+      - name: discount
+        data_type: numeric
+        description: "discount percentage"
+
+      - name: net_amount
+        data_type: numeric
+        description: "Net amount. Calculated as (list_price * quantity) - discount"
+        tests:
+          - is_positive
+
+  - name: mrt_stock
+    description: "Stock fact table at product, store level"
+    columns:
+      - name: stock_id
+        data_type: string
+        description: "Unique identifier for stock"
+        tests:
+          - unique
+          - not_null
+
+      - name: product_id
+        data_type: int64
+        description: "Product identifier"
+        tests:
+          - not_null                          
+          - relationships:
+              to: ref('mrt_product')
+              field: product_id
+
+      - name: store_id
+        data_type: int64
+        description: "Store identifier"
+        tests:
+          - not_null                  
+          - relationships:
+              to: ref('mrt_store')
+              field: store_id
+
+      - name: stock_quantity
+        data_type: int64
+        description: "Stock quantity at time of load"
+
+      - name: stock_value
+        data_type: numeric
+        description: "Value of stock at time of load, calculated as stock_quantity * product.list_price"
+
+      - name: sale_quantity_last_2_months
+        data_type: int64
+        description: "Sale quantity in last 2 months"
+
+      - name: stock_coverage_in_days
+        data_type: float64
+        description: "Stock coverage in days, calculated as stock_quantity / (sale_quantity_last_2_months / 60) "
+
+      - name: total_sale_quantity
+        data_type: int64
+        description: "Total sale quantity since beginning"
+
   - name: mrt_product
-    description: "Product dimension table"
+    description: "Product dimension table with brand and category"
     
     columns:
       - name: product_id
@@ -33,7 +161,7 @@ models:
         description: "List price of product"
 
   - name: mrt_calendar
-    description: "Calendar dimension table"
+    description: "Calendar dimension table for time analysis"
     columns:
       - name: date
         data_type: date
@@ -108,81 +236,6 @@ models:
         data_type: int64
         description: "Zip code of customer"
 
-  - name: mrt_sale_order
-    description: "Sale order fact table"
-    columns:
-      - name: order_item_id
-        data_type: string
-        description: "Unique identifier for order item"
-        tests:
-          - unique
-          - not_null
-
-      - name: order_id
-        data_type: int64
-        description: "Order identifier"
-
-      - name: order_status
-        data_type: int64
-        description: "Order status"
-
-      - name: customer_id
-        data_type: int64
-        description: "Customer identifier"
-        references:
-          model: mrt_customer
-          column: customer_id
-
-      - name: order_date
-        data_type: date
-        description: "Order date"
-
-      - name: required_date
-        data_type: date
-        description: "Required date"
-
-      - name: shipped_date
-        data_type: date
-        description: "Shipped date"
-
-      - name: store_id
-        data_type: int64
-        description: "Store identifier"
-        references:
-          model: mrt_store
-          column: store_id
-
-      - name: staff_id
-        data_type: int64
-        description: "Staff identifier"
-        references:
-          model: mrt_staff
-          column: staff_id
-
-      - name: product_id
-        data_type: int64
-        description: "Product identifier"
-        references:
-          model: mrt_product
-          column: product_id
-
-      - name: quantity
-        data_type: int64
-        description: "Quantity ordered"
-
-      - name: list_price
-        data_type: numeric
-        description: "List price of product"
-
-      - name: discount
-        data_type: numeric
-        description: "discount percentage"
-
-      - name: net_amount
-        data_type: numeric
-        description: "Net amount. Calculated as (list_price * quantity) - discount"
-        tests:
-          - is_positive
 
   - name: mrt_staff
     description: "Staff dimension table"
@@ -205,9 +258,10 @@ models:
       - name: store_id
         data_type: int64
         description: "Store identifier"
-        references:
-          model: mrt_store
-          column: store_id
+        tests:
+          - relationships:
+              to: ref('mrt_store')
+              field: store_id
 
       - name: manager_name
         data_type: string
@@ -241,50 +295,3 @@ models:
         data_type: int64
         description: "Zip code of store"
 
-  - name: mrt_stock
-    description: "Stock fact table at product, store level"
-    columns:
-      - name: stock_id
-        data_type: string
-        description: "Unique identifier for stock"
-        tests:
-          - unique
-          - not_null
-
-      - name: product_id
-        data_type: int64
-        description: "Product identifier"
-        tests:
-          - not_null        
-        references:
-          model: mrt_product
-          column: product_id
-
-      - name: store_id
-        data_type: int64
-        description: "Store identifier"
-        tests:
-          - not_null
-        references:
-          model: mrt_store
-          column: store_id
-
-      - name: stock_quantity
-        data_type: int64
-        description: "Stock quantity at time of load"
-
-      - name: stock_value
-        data_type: numeric
-        description: "Value of stock at time of load, calculated as stock_quantity * product.list_price"
-
-      - name: sale_quantity_last_2_months
-        data_type: int64
-        description: "Sale quantity in last 2 months"
-
-      - name: stock_coverage_in_days
-        data_type: float64
-        description: "Stock coverage in days, calculated as stock_quantity / (sale_quantity_last_2_months / 60) "
-
-      - name: total_sale_quantity
-        data_type: int64
-        description: "Total sale quantity since beginning"
