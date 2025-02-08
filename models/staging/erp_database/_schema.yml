@@ -83,9 +83,10 @@ models:
       - name: category_id
         data_type: int64
         description: "Category identifier"
-        references: 
-          resource: stg_erp_database__category
-          on: category_id
+        tests:
+          - relationships:
+              to: ref('stg_erp_database__category')
+              field: category_id
 
       - name: model_year
         data_type: int64
@@ -149,16 +150,19 @@ models:
     - name: store_id
       data_type: int64
       description: "Store identifier"
-      references: 
-        resource: stg_erp_database__store
-        on: store_id
+      tests:
+        - relationships:
+            to: ref('stg_erp_database__store')
+            field: store_id
 
     - name: manager_id
       data_type: string
       description: "Manager identifier"
-      references: 
-        resource: stg_erp_database__staff
-        on: staff_id
+      tests:
+        - relationships:
+            to: ref('stg_erp_database__staff')
+            field: staff_id
+
   
   - name: stg_erp_database__sale_order
     description: "Sale order table"
@@ -173,9 +177,10 @@ models:
       - name: customer_id
         data_type: int64
         description: "Customer identifier"
-        references: 
-          resource: stg_erp_database__customer
-          on: customer_id
+        tests:
+          - relationships:
+              to: ref('stg_erp_database__customer')
+              field: customer_id
 
       - name: order_status
         data_type: int64
@@ -198,16 +203,18 @@ models:
       - name: store_id
         data_type: int64
         description: "Store identifier"
-        references: 
-          resource: stg_erp_database__store
-          on: store_id
+        tests:
+          - relationships:
+              to: ref('stg_erp_database__store')
+              field: store_id
 
       - name: staff_id
         data_type: int64
         description: "Staff identifier"
-        references: 
-          resource: stg_erp_database__staff
-          on: staff_id
+        tests:
+          - relationships:
+              to: ref('stg_erp_database__staff')
+              field: staff_id
   
   - name: stg_erp_database__sale_order_item
     description: "Sale order item table"
@@ -222,9 +229,10 @@ models:
       - name: order_id
         data_type: int64
         description: "Order identifier"
-        references: 
-          resource: stg_erp_database__sale_order
-          on: order_id
+        tests:
+          - relationships:
+              to: ref('stg_erp_database__sale_order')
+              field: order_id
 
       - name: item_id
         data_type: int64
@@ -233,9 +241,10 @@ models:
       - name: product_id
         data_type: int64
         description: "Product identifier"
-        references: 
-          resource: stg_erp_database__product
-          on: product_id
+        tests:
+          - relationships:
+              to: ref('stg_erp_database__product')
+              field: product_id
 
       - name: quantity
         data_type: int64
@@ -248,6 +257,8 @@ models:
       - name: discount
         data_type: numeric
         description: "Discount percentage"
+        tests:
+          - is_between_0_and_1
 
       - name: net_amount
         data_type: numeric

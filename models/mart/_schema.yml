@@ -1,115 +1,8 @@
 version: 2
 
 models:
-  - name: mrt_product
-    description: "Product dimension table"
-    
-    columns:
-      - name: product_id
-        data_type: int64
-        description: "Unique identifier for product"
-        tests:
-          - unique
-          - not_null
-
-      - name: product_name
-        data_type: string
-        description: "Product name"
-
-      - name: brand_name
-        data_type: string
-        description: "Brand name"
-
-      - name: category_name
-        data_type: string
-        description: "Category name"
-
-      - name: model_year
-        data_type: int64
-        description: "Model year of product"
-
-      - name: list_price
-        data_type: float64
-        description: "List price of product"
-
-  - name: mrt_calendar
-    description: "Calendar dimension table"
-    columns:
-      - name: date
-        data_type: date
-        description: "Date"
-        tests:
-          - unique
-          - not_null
-
-      - name: year
-        data_type: int64
-        description: "Year"
-
-      - name: week
-        data_type: int64
-        description: "Week number"
-
-      - name: day
-        data_type: int64
-        description: "Day of month"
-
-      - name: quarter
-        data_type: string
-        description: "Quarter of year"
-
-      - name: month
-        data_type: int64
-        description: "Month number"
-
-      - name: month_name
-        data_type: string
-        description: "Month name"
-
-      - name: day_of_week
-        data_type: int64
-        description: "Day of week"
-
-      - name: day_of_week_name
-        data_type: string
-        description: "Day of week name"
-
-      - name: is_weekday
-        data_type: boolean
-        description: "Wekday flag"
-
-      - name: days_in_month
-        data_type: int64
-        description: "Number of days in month"
-
-  - name: mrt_customer
-    description: "Customer dimension table"
-    columns:
-      - name: customer_id
-        data_type: int64
-        description: "Unique identifier for customer"
-        tests:
-          - unique
-          - not_null
-
-      - name: customer_name
-        data_type: string
-        description: "Customer name"
-
-      - name: city
-        data_type: string
-        description: "City of customer"
-
-      - name: state
-        data_type: string
-        description: "State of customer"
-
-      - name: zip_code
-        data_type: int64
-        description: "Zip code of customer"
-
   - name: mrt_sale_order
-    description: "Sale order fact table"
+    description: '{{ doc("mrt_sale_order") }}'
     columns:
       - name: order_item_id
         data_type: string
@@ -188,6 +81,162 @@ models:
         tests:
           - is_positive
 
+  - name: mrt_stock
+    description: "Stock fact table at product, store level"
+    columns:
+      - name: stock_id
+        data_type: string
+        description: "Unique identifier for stock"
+        tests:
+          - unique
+          - not_null
+
+      - name: product_id
+        data_type: int64
+        description: "Product identifier"
+        tests:
+          - not_null                          
+          - relationships:
+              to: ref('mrt_product')
+              field: product_id
+
+      - name: store_id
+        data_type: int64
+        description: "Store identifier"
+        tests:
+          - not_null                  
+          - relationships:
+              to: ref('mrt_store')
+              field: store_id
+
+      - name: stock_quantity
+        data_type: int64
+        description: "Stock quantity at time of load"
+
+      - name: stock_value
+        data_type: numeric
+        description: "Value of stock at time of load, calculated as stock_quantity * product.list_price"
+
+      - name: sale_quantity_last_2_months
+        data_type: int64
+        description: "Sale quantity in last 2 months"
+
+      - name: stock_coverage_in_days
+        data_type: float64
+        description: "Stock coverage in days, calculated as stock_quantity / (sale_quantity_last_2_months / 60) "
+
+      - name: total_sale_quantity
+        data_type: int64
+        description: "Total sale quantity since beginning"
+
+  - name: mrt_product
+    description: "Product dimension table with brand and category"
+    
+    columns:
+      - name: product_id
+        data_type: int64
+        description: "Unique identifier for product"
+        tests:
+          - unique
+          - not_null
+
+      - name: product_name
+        data_type: string
+        description: "Product name"
+
+      - name: brand_name
+        data_type: string
+        description: "Brand name"
+
+      - name: category_name
+        data_type: string
+        description: "Category name"
+
+      - name: model_year
+        data_type: int64
+        description: "Model year of product"
+
+      - name: list_price
+        data_type: float64
+        description: "List price of product"
+
+  - name: mrt_calendar
+    description: "Calendar dimension table for time analysis"
+    columns:
+      - name: date
+        data_type: date
+        description: "Date"
+        tests:
+          - unique
+          - not_null
+
+      - name: year
+        data_type: int64
+        description: "Year"
+
+      - name: week
+        data_type: int64
+        description: "Week number"
+
+      - name: day
+        data_type: int64
+        description: "Day of month"
+
+      - name: quarter
+        data_type: string
+        description: "Quarter of year"
+
+      - name: month
+        data_type: int64
+        description: "Month number"
+
+      - name: month_name
+        data_type: string
+        description: "Month name"
+
+      - name: day_of_week
+        data_type: int64
+        description: "Day of week"
+
+      - name: day_of_week_name
+        data_type: string
+        description: "Day of week name"
+
+      - name: is_weekday
+        data_type: boolean
+        description: "Wekday flag"
+
+      - name: days_in_month
+        data_type: int64
+        description: "Number of days in month"
+
+  - name: mrt_customer
+    description: "Customer dimension table"
+    columns:
+      - name: customer_id
+        data_type: int64
+        description: "Unique identifier for customer"
+        tests:
+          - unique
+          - not_null
+
+      - name: customer_name
+        data_type: string
+        description: "Customer name"
+
+      - name: city
+        data_type: string
+        description: "City of customer"
+
+      - name: state
+        data_type: string
+        description: "State of customer"
+
+      - name: zip_code
+        data_type: int64
+        description: "Zip code of customer"
+
+
   - name: mrt_staff
     description: "Staff dimension table"
     columns:
@@ -246,50 +295,3 @@ models:
         data_type: int64
         description: "Zip code of store"
 
-  - name: mrt_stock
-    description: "Stock fact table at product, store level"
-    columns:
-      - name: stock_id
-        data_type: string
-        description: "Unique identifier for stock"
-        tests:
-          - unique
-          - not_null
-
-      - name: product_id
-        data_type: int64
-        description: "Product identifier"
-        tests:
-          - not_null                          
-          - relationships:
-              to: ref('mrt_product')
-              field: product_id
-
-      - name: store_id
-        data_type: int64
-        description: "Store identifier"
-        tests:
-          - not_null                  
-          - relationships:
-              to: ref('mrt_store')
-              field: store_id
-
-      - name: stock_quantity
-        data_type: int64
-        description: "Stock quantity at time of load"
-
-      - name: stock_value
-        data_type: numeric
-        description: "Value of stock at time of load, calculated as stock_quantity * product.list_price"
-
-      - name: sale_quantity_last_2_months
-        data_type: int64
-        description: "Sale quantity in last 2 months"
-
-      - name: stock_coverage_in_days
-        data_type: float64
-        description: "Stock coverage in days, calculated as stock_quantity / (sale_quantity_last_2_months / 60) "
-
-      - name: total_sale_quantity
-        data_type: int64
-        description: "Total sale quantity since beginning"
