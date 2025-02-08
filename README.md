@@ -39,23 +39,23 @@ Il s'agit d'une modélisation en vue d'un usage Self Service via Metabase
         * staff : id, nom du vendeur, nom du manager, id du magasin
         * sale_calendar : calendrier pour simplifier les analyses sur l'axe temps
 
-![Diagramme](images/mart_data_modele.png)
+![Diagramme](images/mart_data_model.png)
 
 ### Dashboard Metabase
 
 4 onglets ont été réalisés pour analyser quelques données du jeu de données
 
     - Onglet Overview
-![Diagramme](images/Metabase - Overview.png)
+![Diagramme](images/Metabase_Overview.png)
 
     - Onglet Product performances
-![Diagramme](images/Metabase - Product performances.png)
+![Diagramme](images/Metabase_Product_performances.png)
 
     - Onglet Store view 
-![Diagramme](images/Metabase - Store view.png)
+![Diagramme](images/Metabase_Store_view.png)
 
     - Onglet Stock view
-![Diagramme](images/Metabase - Stock view.png)
+![Diagramme](images/Metabase_Stock_view.png)
 
 
 
