@@ -1,6 +1,5 @@
 
-target/compiled/
-target/run
+target/
 dbt_packages/
 logs/
 dbt-env/

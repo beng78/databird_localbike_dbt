@@ -43,7 +43,7 @@ Il s'agit d'une modélisation en vue d'un usage Self Service via Metabase
 
 ### Modèles dbt
 
-[Voir les modèles dbt](target/index.html)
+[Voir les modèles dbt](docs/index.html)
 
 
 ### Dashboard Metabase
