@@ -5,7 +5,7 @@ Pour avoir plus d'informations [lien vers Databird](https://www.data-bird.co/for
 
 ### Modèle de données 
 
-![Diagramme](images/source_data_modele.png)
+![Diagramme](images/source_data_model.png)
 
 ### Objectifs
 
