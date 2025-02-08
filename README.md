@@ -43,7 +43,7 @@ Il s'agit d'une modélisation en vue d'un usage Self Service via Metabase
 
 ### Modèles dbt
 
-[Voir les modèles dbt](docs/index.html)
+[Voir les modèles dbt](https://beng78.github.io/databird_localbike_dbt)
 
 
 ### Dashboard Metabase
