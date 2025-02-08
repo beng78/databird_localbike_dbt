@@ -25,19 +25,20 @@ maximiser le revenu de l'entreprise grâce aux insights obtenus.
     - Effectuer une analyse complète en créant un dashboard pour répondre à la problématique d’optimisation des revenus de Local Bike
 
 
-### Modèle de mart proposé
+### Modèle mart proposé
 
-Il s'agit d'une modélisation en vue d'un usage Self Service via Metabase
-    - 2 tables de faits
-        * Sale Order : table des commandes des ventes au niveau jour\client\produit\magasin\équipe
-        * Stock : table des stocks à date au niveau produit\magasin
+Il s'agit d'une modélisation "Star schema" en vue d'un usage Self Service via Metabase
+
+- 2 tables de faits
+    * Sale Order : table des commandes des ventes au niveau jour\client\produit\magasin\équipe
+    * Stock : table des stocks à date au niveau produit\magasin
     
-    - tables de dimensions
-        * product : id, nom du produit, marque et catégorie
-        * customer : id, nom du client, état géographique
-        * store : id, nom du magasin, état géographique        
-        * staff : id, nom du vendeur, nom du manager, id du magasin
-        * sale_calendar : calendrier pour simplifier les analyses sur l'axe temps
+- tables de dimensions
+    * product : id, nom du produit, marque et catégorie
+    * customer : id, nom du client, état géographique
+    * store : id, nom du magasin, état géographique        
+    * staff : id, nom du vendeur, nom du manager, id du magasin
+    * sale_calendar : calendrier pour simplifier les analyses sur l'axe temps
 
 ![Diagramme](images/mart_data_model.png)
 
