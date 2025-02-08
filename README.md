@@ -50,16 +50,16 @@ Il s'agit d'une modélisation en vue d'un usage Self Service via Metabase
 
 4 onglets ont été réalisés pour analyser quelques données du jeu de données
 
-    - **Onglet Overview**
+1- Onglet Overview
 ![Diagramme](images/Metabase_Overview.png)
 
-    - **Onglet Product performances</ins**
+2 - Onglet Product performances
 ![Diagramme](images/Metabase_Product_performances.png)
 
-    - **Onglet Store view**
+2- Onglet Store view
 ![Diagramme](images/Metabase_Store_view.png)
 
-    - **Onglet Stock view**
+4- Onglet Stock view
 ![Diagramme](images/Metabase_Stock_view.png)
 
 
