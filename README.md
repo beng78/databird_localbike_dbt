@@ -24,7 +24,6 @@ maximiser le revenu de l'entreprise grâce aux insights obtenus.
 5. Bonus: Création de dashboard et analyse
     - Effectuer une analyse complète en créant un dashboard pour répondre à la problématique d’optimisation des revenus de Local Bike
 
-
 ### Modèle mart proposé
 
 Il s'agit d'une modélisation "Star schema" en vue d'un usage Self Service via Metabase
