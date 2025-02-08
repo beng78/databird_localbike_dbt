@@ -49,7 +49,7 @@ Il s'agit d'une modélisation "Star schema" en vue d'un usage Self Service via M
 
 ### Dashboard Metabase
 
-4 onglets ont été réalisés pour analyser quelques données du jeu de données
+4 onglets ont été réalisés pour analyser quelques données du dataset fourni
 
 1- Onglet Overview
 ![Diagramme](images/Metabase_Overview.png)
