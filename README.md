@@ -24,42 +24,42 @@ maximiser le revenu de l'entreprise grâce aux insights obtenus.
 5. Bonus: Création de dashboard et analyse
     - Effectuer une analyse complète en créant un dashboard pour répondre à la problématique d’optimisation des revenus de Local Bike
 
+### Modèle mart proposé
 
-### Modèle de mart proposé
+Il s'agit d'une modélisation "Star schema" en vue d'un usage Self Service via Metabase
 
-Il s'agit d'une modélisation en vue d'un usage Self Service via Metabase
-    - 2 tables de faits
-        * Sale Order : table des commandes des ventes au niveau jour\client\produit\magasin\équipe
-        * Stock : table des stocks à date au niveau produit\magasin
+- 2 tables de faits
+    * Sale Order : table des commandes des ventes au niveau jour\client\produit\magasin\équipe
+    * Stock : table des stocks à date au niveau produit\magasin
     
-    - tables de dimensions
-        * product : id, nom du produit, marque et catégorie
-        * customer : id, nom du client, état géographique
-        * store : id, nom du magasin, état géographique        
-        * staff : id, nom du vendeur, nom du manager, id du magasin
-        * sale_calendar : calendrier pour simplifier les analyses sur l'axe temps
+- tables de dimensions
+    * product : id, nom du produit, marque et catégorie
+    * customer : id, nom du client, état géographique
+    * store : id, nom du magasin, état géographique        
+    * staff : id, nom du vendeur, nom du manager, id du magasin
+    * sale_calendar : calendrier pour simplifier les analyses sur l'axe temps
 
 ![Diagramme](images/mart_data_model.png)
 
 ### Modèles dbt
 
-[Voir les modèles dbt](docs/index.html)
+[Voir les modèles dbt](https://beng78.github.io/databird_localbike_dbt)
 
 
 ### Dashboard Metabase
 
-4 onglets ont été réalisés pour analyser quelques données du jeu de données
+4 onglets ont été réalisés pour analyser quelques données du dataset fourni
 
-    - <u>Onglet Overview</u>
+1- Onglet Overview
 ![Diagramme](images/Metabase_Overview.png)
 
-    - <u>Onglet Product performances</u>
+2 - Onglet Product performances
 ![Diagramme](images/Metabase_Product_performances.png)
 
-    - <u>Onglet Store view</u> 
+2- Onglet Store view
 ![Diagramme](images/Metabase_Store_view.png)
 
-    - <u>Onglet Stock view</u>
+4- Onglet Stock view
 ![Diagramme](images/Metabase_Stock_view.png)
 
 
