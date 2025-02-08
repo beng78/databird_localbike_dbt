@@ -1,8 +1,8 @@
 
-### Projet Local Bike dans le cadre de la formation Analytics Engineer
+### Projet Local Bike développé dans le cadre de la formation Analytics Engineer
 
-Pour avoir plus d'information [programme](https://www.data-bird.co/formation-data-engineer/analytics-engineer-databird-datagen)
-
+Pour avoir plus d'informations [lien vers Databird](https://www.data-bird.co/formation-data-engineer/analytics-engineer-databird-datagen)
+<a href="https://www.data-bird.co/formation-data-engineer/analytics-engineer-databird-datagen" target="_blank" rel="noopener noreferrer">lien vers Databird</a> 
 
 
 ### Modèle de données 
@@ -27,4 +27,18 @@ maximiser le revenu de l'entreprise grâce aux insights obtenus.
     - Effectuer une analyse complète en créant un dashboard pour répondre à la problématique d’optimisation des revenus de Local Bike
 
 
+### Modèle de mart proposé
 
+Il s'agit d'une modélisation en vue d'un usage Self Service via Metabase
+    - 2 tables de faits
+        * Sale Order : table des commandes des ventes au niveau jour\client\produit\magasin\équipe
+        * Stock : table des stocks à date au niveau produit\magasin
+    
+    - tables de dimensions
+        * product : id, nom du produit, marque et catégorie
+        * customer : id, nom du client, état géographique
+        * store : id, nom du magasin, état géographique        
+        * staff : id, nom du vendeur, nom du manager, id du magasin
+        * sale_calendar : calendrier pour simplifier les analyses sur l'axe temps
+
+### Dashboard Metabase
