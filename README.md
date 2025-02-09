@@ -1,7 +1,7 @@
 
 ### Projet Local Bike développé dans le cadre de la formation Analytics Engineer
 
-Pour avoir plus d'informations [lien vers Databird](https://www.data-bird.co/formation-data-engineer/analytics-engineer-databird-datagen)
+Pour avoir plus d'informations sur la formation [lien vers Databird](https://www.data-bird.co/formation-data-engineer/analytics-engineer-databird-datagen)
 
 ### Modèle de données 
 
