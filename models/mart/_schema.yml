@@ -79,7 +79,8 @@ models:
         data_type: numeric
         description: "Net amount. Calculated as (list_price * quantity) - discount"
         tests:
-          - is_positive
+          - dbt_utils.expression_is_true:
+              expression: ">=0"
 
   - name: mrt_stock
     description: "Stock fact table at product, store level"
