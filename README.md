@@ -3,6 +3,9 @@
 
 Pour avoir plus d'informations [lien vers Databird](https://www.data-bird.co/formation-data-engineer/analytics-engineer-databird-datagen)
 
+### Jeu de données
+Dataset Kraggle : https://www.kaggle.com/datasets/dillonmyrick/bike-store-sample-database
+
 ### Modèle de données 
 
 ![Diagramme](images/source_data_model.png)
